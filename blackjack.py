@@ -1,4 +1,5 @@
 import random
+import os
 
 # Klass för spelare
 class Player:
@@ -85,13 +86,20 @@ class Game:
 def main():
     game = Game()
     print("Välkommen till NotBlackjack!")
+
     while True:
         game.play_round()
         game.show_score()
-        again = input("\nVill du spela igen? (j/n): ").lower()
-        if again != "j":
-            print("Tack för att du spelade!")
-            break
+
+        while True:
+            again = input("\nVill du spela igen? (j/n): ").lower()
+            if again == "j":
+                break  # fortsätt till nästa runda
+            elif again == "n":
+                print("Tack för att du spelade!")
+                return  # avsluta spelet
+            else:
+                print("Ogiltigt val. Skriv 'j' eller 'n'.")
 
 if __name__ == "__main__":
     main()
