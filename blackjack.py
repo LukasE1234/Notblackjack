@@ -1,5 +1,4 @@
 import random
-import os
 
 # Klass för spelare
 class Player:
@@ -25,13 +24,12 @@ class Game:
         self.load_highscore()
 
     def load_highscore(self):
-        # Läser highscore från fil om den finns
-        if os.path.exists("highscore.txt"):
+        try:
             with open("highscore.txt", "r") as f:
                 lines = f.read().split(",")
                 self.player_wins = int(lines[0])
                 self.dealer_wins = int(lines[1])
-        else:
+        except FileNotFoundError:
             self.player_wins = 0
             self.dealer_wins = 0
 
